@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Alert,Navbar,Nav,NavItem,NavDropdown,MenuItem,FormGroup,FormControl,Col,ControlLabel,Button,Jumbotron,HelpBlock, Form, Checkbox} from 'react-bootstrap';
+import {request} from "../App";
 
 class FormComponets extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this)
 
         this.state = {
             value: 'aaaa'
@@ -14,15 +15,40 @@ class FormComponets extends React.Component {
 
     getValidationState() {
         const length = this.state.value.length;
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
-        else if (length > 0) return 'error';
+        if (length > 10) return 'success'
+        else if (length > 5) return 'warning'
+        else if (length > 0) return 'error'
         return null;
     }
 
     handleChange(e) {
-        this.setState({ value: e.target.value });
+        this.setState({ value: e.target.value })
     }
+
+
+    requestForLogin(method, url, body) {
+        if (method === 'GET') {
+            body = undefined;
+        } else {
+            body = body && JSON.stringify(body)
+        }
+        return fetch(url, {
+            method,
+            header: {},
+            body
+        }).then((response) => {
+            if (response.status === 401) {
+
+            } else {
+                return response.json();
+            }
+        });
+    }
+
+    postForm = (url, body) => {
+        this.requestForLogin('POST', url, body)
+    }
+
 
     render() {
         return (
@@ -53,9 +79,9 @@ class FormComponets extends React.Component {
 
                 <FormGroup>
                     <Col smOffset={6} sm={10}>
-                        <Button type="submit" href={this.state.value} onClick={() => {
-                            alert('!!!!!!!!!!!!!!!' + this.state.value)
-                            window.location.href ='http://www.baidu.com'
+                        <Button type="submit" onClick={(e) => {
+                            e.preventDefault()
+                            this.postForm('http://www.google.com/ddd',{username: 'aaa', password:'bbb'})
                         }}>Sign in</Button>
                     </Col>
                 </FormGroup>
