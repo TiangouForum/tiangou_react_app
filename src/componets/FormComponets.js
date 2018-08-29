@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert,Navbar,Nav,NavItem,NavDropdown,MenuItem,FormGroup,FormControl,Col,ControlLabel,Button,Jumbotron,HelpBlock, Form, Checkbox} from 'react-bootstrap';
+import { FormGroup,FormControl,Col,ControlLabel,Button,Form, Checkbox} from 'react-bootstrap';
 import {request} from "../App";
 
 class FormComponets extends React.Component {
@@ -7,28 +7,58 @@ class FormComponets extends React.Component {
         super(props, context);
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
 
         this.state = {
-            value: 'aaaa'
-        };
+            form : {
+                username:{
+                    value: '',
+                    valid: false,
+                    error: ''
+                },
+                password:{
+                    value: '',
+                    valid: false,
+                    error: ''
+                }
+            }
+        }
+
     }
 
-    getValidationState() {
-        const length = this.state.value.length;
-        if (length > 10) return 'success'
-        else if (length > 5) return 'warning'
-        else if (length > 0) return 'error'
-        return null;
+    handleChange(stateFormField,value) {
+        const {form} = this.state
+        const valuePack = {value,valid: true,error:''}
+        switch (stateFormField) {
+            case 'username': {
+                if (value.length === 0) {
+                    valuePack.valid = false
+                    valuePack.error = '请输入用户名'
+                } else if( value.length < 3 || value.length > 15) {
+                    valuePack.valid = false
+                    valuePack.error = '用户名长度只允许3-15个字符'
+                }
+                break
+            }
+            case 'password': {
+                if (value.length < 8) {
+                    valuePack.valid = false
+                    valuePack.error = '密码长度至少8位'
+                }
+                break
+            }
+        }
+        this.setState({
+            form: {
+                ...form,
+                [stateFormField]: valuePack
+            }
+        })
     }
-
-    handleChange(e) {
-        this.setState({ value: e.target.value })
-    }
-
 
     requestForLogin(method, url, body) {
         if (method === 'GET') {
-            body = undefined;
+            body = undefined
         } else {
             body = body && JSON.stringify(body)
         }
@@ -37,20 +67,29 @@ class FormComponets extends React.Component {
             header: {},
             body
         }).then((response) => {
-            if (response.status === 401) {
-
+            if (response.status === 404) {
             } else {
-                return response.json();
+                return response.json()
             }
-        });
+        })
     }
 
-    postForm = (url, body) => {
-        this.requestForLogin('POST', url, body)
+    handleSubmit(e){
+        e.preventDefault()
+        const {form:{username,password}} = this.state
+        if (!username.valid || !password.valid) {
+            alert("请确认登录信息")
+            return
+        }
+        this.requestForLogin('POST',"http://localhost:3000/login",{
+            username: username.value,
+            password: password.value
+        })
     }
-
 
     render() {
+        const {form: {username,password}} = this.state
+
         return (
             <Form horizontal>
                 <FormGroup controlId="formHorizontalEmail">
@@ -58,7 +97,7 @@ class FormComponets extends React.Component {
                         username
                     </Col>
                     <Col sm={3}>
-                        <FormControl type="string" placeholder="username" />
+                        <FormControl type="string" placeholder="username" onChange={(e) => this.handleChange('username',e.target.value)}/>
                     </Col>
                 </FormGroup>
 
@@ -67,7 +106,7 @@ class FormComponets extends React.Component {
                         Password
                     </Col>
                     <Col sm={3}>
-                        <FormControl type="password" placeholder="Password" />
+                        <FormControl type="password" placeholder="Password" onChange={(e) => this.handleChange('password',e.target.value)}/>
                     </Col>
                 </FormGroup>
 
@@ -79,14 +118,11 @@ class FormComponets extends React.Component {
 
                 <FormGroup>
                     <Col smOffset={6} sm={10}>
-                        <Button type="submit" onClick={(e) => {
-                            e.preventDefault()
-                            this.postForm('http://www.google.com/ddd',{username: 'aaa', password:'bbb'})
-                        }}>Sign in</Button>
+                        <Button type="submit" onClick={(e) => this.handleSubmit(e)}>Sign in</Button>
                     </Col>
                 </FormGroup>
             </Form>
-        );
+        )
     }
 }
 

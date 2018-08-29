@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import  FormComponents from './componets/FormComponets';
-import { Alert,Navbar,Nav,NavItem,NavDropdown,MenuItem,FormGroup,FormControl,Col,ControlLabel,Button,Jumbotron } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 class App extends Component {
     renderRenter = () => {
