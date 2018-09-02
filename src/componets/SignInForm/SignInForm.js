@@ -1,8 +1,8 @@
 import React from 'react'
-import {FormGroup, FormControl, Col, ControlLabel, Button, Form, Checkbox, Alert} from 'react-bootstrap'
+import { FormGroup, FormControl, Col, ControlLabel, Button, Form, Checkbox, Alert } from 'react-bootstrap'
 
 class SignInForm extends React.Component {
-  constructor(props, context) {
+  constructor (props, context) {
     super(props, context)
 
     this.handleChange = this.handleChange.bind(this)
@@ -18,8 +18,8 @@ class SignInForm extends React.Component {
     }
   }
 
-  handleChange(stateFormField, value) {
-    const {form} = this.state
+  handleChange (stateFormField, value) {
+    const { form } = this.state
     this.setState({
       ...this.state,
       form: {
@@ -29,7 +29,7 @@ class SignInForm extends React.Component {
     })
   }
 
-  requestForSignIn(method, url, body) {
+  requestForSignIn (method, url, body) {
     if (method === 'GET') {
       body = undefined
     } else {
@@ -41,6 +41,7 @@ class SignInForm extends React.Component {
       body
     }).then((response) => {
       if (response.status === 200) {
+        // TODO
       } else if (response.status === 404) {
         this.setState({
           ...this.state,
@@ -52,9 +53,9 @@ class SignInForm extends React.Component {
     })
   }
 
-  handleSubmit(e) {
+  handleSubmit (e) {
     e.preventDefault()
-    const {form: {username, password}} = this.state
+    const { form: { username, password } } = this.state
 
     this.requestForSignIn('POST', this.state.url, {
       username: username,
@@ -62,7 +63,7 @@ class SignInForm extends React.Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <Form horizontal>
         <FormGroup controlId="formHorizontalEmail">
@@ -71,7 +72,7 @@ class SignInForm extends React.Component {
           </Col>
           <Col sm={3}>
             <FormControl type="string" placeholder='username'
-                         onChange={(e) => this.handleChange('username', e.target.value)}/>
+              onChange={(e) => this.handleChange('username', e.target.value)}/>
           </Col>
         </FormGroup>
         <FormGroup controlId="formHorizontalPassword">
@@ -80,11 +81,11 @@ class SignInForm extends React.Component {
           </Col>
           <Col sm={3}>
             <FormControl type="password" placeholder='username'
-                         onChange={(e) => this.handleChange('password', e.target.value)}/>
+              onChange={(e) => this.handleChange('password', e.target.value)}/>
           </Col>
         </FormGroup>
         <Col smOffset={5} sm={3}>
-          <Alert bsStyle="danger" style={{display: this.state.isLoginError ? true : 'none'}}> '请输入正确的用户名和密码' </Alert>
+          <Alert bsStyle="danger" style={{ display: this.state.isLoginError ? true : 'none' }}> 请输入正确的用户名和密码 </Alert>
         </Col>
         <FormGroup>
           <Col smOffset={5} sm={10}>
