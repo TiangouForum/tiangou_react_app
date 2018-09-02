@@ -68,6 +68,8 @@ class SignUpForm extends React.Component {
         break
       }
       case 'password': {
+          console.log(value)
+          console.log(this.state.form.repeatPassword.value)
         if (value.length < 8) {
           valuePack.valid = false
           valuePack.error = '密码长度至少8位'
@@ -77,6 +79,11 @@ class SignUpForm extends React.Component {
           valuePack.value = this.state.form.repeatPassword.value
           valuePack.valid = false
           valuePack.error = '两次输入密码不一致'
+          form['repeatPassword'] = valuePack
+        } else if (this.state.form.repeatPassword.value !== '' && value === this.state.form.repeatPassword.value) {
+          valuePack.value = this.state.form.repeatPassword.value
+          valuePack.valid = true
+          valuePack.error = ''
           form['repeatPassword'] = valuePack
         }
         break
