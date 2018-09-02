@@ -65,7 +65,7 @@ class SignUpForm extends React.Component {
         return this.validateForRepeatPassword(this.state.form.password.value, value)
       }
       default:
-        return null
+        return {}
     }
   }
 
@@ -132,7 +132,7 @@ class SignUpForm extends React.Component {
     if (this.state.form.hasCommit) return
 
     // 验证所有字段
-    const form = Object.keys(this.state.form).filter((key) => (key !== 'isSet')).reduce((acc, key) => {
+    const form = Object.keys(this.state.form).filter((key) => (key !== 'hasCommit')).reduce((acc, key) => {
       return { ...acc, ...this.validateFormField(key, this.state.form[key].value) }
     }, {})
 
