@@ -54,23 +54,19 @@ class SignUpForm extends React.Component {
   }
 
   validateFormField(stateFormField, value) {
-    let form = {}
-    const valuePack = {value, valid: true, error: '', isSet: (value !== '')}
     switch (stateFormField) {
       case 'username': {
         return this.validateForUsername(value)
-        break
       }
       case 'password': {
-        return form = {...this.vaildateForPassword(value), ...this.validateForRepeatPassword(value, this.state.form.repeatPassword.value)}
-        break
+        return {...this.vaildateForPassword(value), ...this.validateForRepeatPassword(value, this.state.form.repeatPassword.value)}
       }
       case 'repeatPassword': {
         return this.validateForRepeatPassword(this.state.form.password.value, value)
-        break
       }
+      default:
+        return null
     }
-    return form
   }
 
   validateForRepeatPassword(passwordValue, repeatPasswordValue) {
@@ -187,7 +183,7 @@ class SignUpForm extends React.Component {
             Password
           </Col>
           <Col sm={3}>
-            <FormControl type="password" placeholder='password'
+            <FormControl type="password" key="password" placeholder="password"
                          onChange={(e) => this.handleChange('password', e.target.value)}/>
           </Col>
         </FormGroup>
@@ -195,12 +191,12 @@ class SignUpForm extends React.Component {
           <Alert bsStyle="danger"
                  style={{display: this.shouldAlert('password') ? true : 'none'}}>             {this.state.form.password.error}           </Alert>
         </Col>
-        <FormGroup controlId="formHorizontalPassword" validationState={this.getValidationState('repeatPassword')}>
+        <FormGroup controlId="formHorizontalRepeatPassword" validationState={this.getValidationState('repeatPassword')}>
           <Col smOffset={3} componentClass={ControlLabel} sm={2}>
             Repeat Password
           </Col>
           <Col sm={3}>
-            <FormControl type="password" placeholder='repeat password'
+            <FormControl type="password" key="repeat password" placeholder='repeat password'
                          onChange={(e) => this.handleChange('repeatPassword', e.target.value)}/>
           </Col>
         </FormGroup>
