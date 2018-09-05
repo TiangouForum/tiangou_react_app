@@ -1,0 +1,5 @@
+#! /bin/bash -ex
+cd $(dirname $0)/.
+CONTAINER_NAME=tiangou-react-app-container
+
+docker rm $CONTAINER_NAME -f
