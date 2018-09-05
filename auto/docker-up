@@ -1,0 +1,12 @@
+#! /bin/bash -ex
+cd $(dirname $0)/..
+
+source ./auto/docker-build
+
+IMAGE_NAME=tiangou-react-app
+CONTAINER_NAME=tiangou-react-app-container
+
+docker build -f Dockerfile -t $IMAGE_NAME .
+docker run -d -p 8080:3000 $IMAGE_NAME
+
+

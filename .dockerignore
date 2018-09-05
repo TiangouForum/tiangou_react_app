@@ -1,0 +1,11 @@
+Dockerfile
+Dockerfile_node
+docker-compose.yml
+README.md
+.gitignore
+auto/
+node_modules/
+.idea
+.git
+/build
+/dist
