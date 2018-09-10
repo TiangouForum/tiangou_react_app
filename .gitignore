@@ -25,3 +25,5 @@ yarn-error.log*
 *.ipr
 *.iml
 *.iws
+
+/dist
