@@ -11,7 +11,7 @@ class Home extends Component {
           <p style={{ color: 'gray' }}>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                         这是一个开放的论坛，这是一片自由的天地，<br/>
-                        我们在这里谈天论地，畅所欲言，期待你们的加入。
+                        我们在这里谈天论地，畅所欲言，期待dadsfdsasddfdsasdf你们的加入。
           </p>
           <p>
             <Button bsStyle="primary">了解更多</Button>
