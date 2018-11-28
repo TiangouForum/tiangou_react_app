@@ -6,9 +6,10 @@ CONTAINER_NAME=tiangou-react-app-build-container
 
 docker build -f Dockerfile_node -t $IMAGE_NAME .
 
-rm -rf ../dist
+rm -rf ./dist
+mkdir dist
 
 docker run  --rm \
-    -v "$(pwd)"/dist:/app/build \
+    -v "$(pwd)"/dist:/app/dist \
     -e NODE_ENV=production \
     --name $CONTAINER_NAME $IMAGE_NAME:latest

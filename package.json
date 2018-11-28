@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint-config-react-app": "^2.1.0",
-    "eslint-loader": "^2.1.0",
-    "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
+    "@babel/polyfill": "^7.0.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.3",
     "react-dom": "^16.4.2",
@@ -21,14 +17,35 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint src --config=.eslintrc.js",
-    "lint-fix": "eslint src --fix --config=.eslintrc.js"
+    "lint-fix": "eslint src --fix --config=.eslintrc.js",
+    "package": "yarn run webpack",
+    "webpack": "./node_modules/.bin/webpack",
+    "webpack:watch": "yarn run webpack --watch --mode development"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-0": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^1.0.0",
     "eslint": "^5.5.0",
+    "eslint-config-react-app": "^2.1.0",
     "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
   }
 }
