@@ -2,11 +2,8 @@ import React from 'react'
 import { FormGroup, FormControl, Col, ControlLabel, Button, Form, Alert } from 'react-bootstrap'
 
 class SignUpForm extends React.Component {
-  constructor (props, context) {
+  constructor(props, context) {
     super(props, context)
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
 
     this.state = {
       form: {
@@ -34,12 +31,12 @@ class SignUpForm extends React.Component {
     }
   }
 
-  getValidationState (stateFormField) {
+  getValidationState = (stateFormField) => {
     if (this.shouldAlert(stateFormField)) return 'error'
     return null
   }
 
-  handleChange (stateFormField, value) {
+  handleChange = (stateFormField, value) => {
     const { form } = this.state
     const changedFormField = this.validateFormField(stateFormField, value)
     this.setState({
@@ -53,7 +50,7 @@ class SignUpForm extends React.Component {
     })
   }
 
-  validateFormField (stateFormField, value) {
+  validateFormField = (stateFormField, value) => {
     switch (stateFormField) {
       case 'username': {
         return this.validateForUsername(value)
@@ -69,7 +66,7 @@ class SignUpForm extends React.Component {
     }
   }
 
-  validateForRepeatPassword (passwordValue, repeatPasswordValue) {
+  validateForRepeatPassword = (passwordValue, repeatPasswordValue) => {
     const form = {}
     const valuePack = { value: repeatPasswordValue, valid: true, error: '', isSet: (repeatPasswordValue !== '') }
     if (repeatPasswordValue.length === 0) {
@@ -83,7 +80,7 @@ class SignUpForm extends React.Component {
     return form
   }
 
-  vaildateForPassword (value) {
+  vaildateForPassword = (value) => {
     const form = {}
     const valuePack = { value, valid: true, error: '', isSet: (value !== '') }
     if (value.length < 8) {
@@ -94,7 +91,7 @@ class SignUpForm extends React.Component {
     return form
   }
 
-  validateForUsername (value) {
+  validateForUsername = (value) => {
     const form = {}
     const valuePack = { value, valid: true, error: '', isSet: (value !== '') }
     if (value.length === 0) {
@@ -108,7 +105,7 @@ class SignUpForm extends React.Component {
     return form
   }
 
-  requestForSign (method, url, body) {
+  requestForSign = (method, url, body) => {
     if (method === 'GET') {
       body = undefined
     } else {
@@ -126,7 +123,7 @@ class SignUpForm extends React.Component {
     })
   }
 
-  handleSubmit (e) {
+  handleSubmit = (e) => {
     e.preventDefault()
     // 防止重复提交
     if (this.state.form.hasCommit) return
@@ -154,7 +151,7 @@ class SignUpForm extends React.Component {
     })
   }
 
-  shouldAlert (stateFormField) {
+  shouldAlert = (stateFormField) => {
     if (this.state.form[stateFormField].isSet) {
       return !this.state.form[stateFormField].valid
     } else {
@@ -162,7 +159,7 @@ class SignUpForm extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <Form horizontal>
         <FormGroup controlId="formHorizontalEmail" validationState={this.getValidationState('username')}>
@@ -171,7 +168,7 @@ class SignUpForm extends React.Component {
           </Col>
           <Col sm={3}>
             <FormControl type="string" placeholder='username'
-              onChange={(e) => this.handleChange('username', e.target.value)}/>
+              onChange={(e) => this.handleChange('username', e.target.value)} />
           </Col>
         </FormGroup>
         <Col smOffset={5} sm={3}>
@@ -184,7 +181,7 @@ class SignUpForm extends React.Component {
           </Col>
           <Col sm={3}>
             <FormControl type="password" key="password" placeholder="password"
-              onChange={(e) => this.handleChange('password', e.target.value)}/>
+              onChange={(e) => this.handleChange('password', e.target.value)} />
           </Col>
         </FormGroup>
         <Col smOffset={5} sm={3}>
@@ -197,7 +194,7 @@ class SignUpForm extends React.Component {
           </Col>
           <Col sm={3}>
             <FormControl type="password" key="repeat password" placeholder='repeat password'
-              onChange={(e) => this.handleChange('repeatPassword', e.target.value)}/>
+              onChange={(e) => this.handleChange('repeatPassword', e.target.value)} />
           </Col>
         </FormGroup>
         <Col smOffset={5} sm={3}>
