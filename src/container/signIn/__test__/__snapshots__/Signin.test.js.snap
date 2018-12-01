@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <form
+    className="form-horizontal"
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        className="col-sm-2 col-sm-offset-3 control-label"
+        htmlFor="formHorizontalEmail"
+      >
+        username
+      </label>
+      <div
+        className="col-sm-3"
+      >
+        <input
+          className="form-control"
+          id="formHorizontalEmail"
+          onChange={[Function]}
+          placeholder="username"
+          type="string"
+        />
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        className="col-sm-2 col-sm-offset-3 control-label"
+        htmlFor="formHorizontalPassword"
+      >
+        Password
+      </label>
+      <div
+        className="col-sm-3"
+      >
+        <input
+          className="form-control"
+          id="formHorizontalPassword"
+          onChange={[Function]}
+          placeholder="username"
+          type="password"
+        />
+      </div>
+    </div>
+    <div
+      className="col-sm-3 col-sm-offset-5"
+    >
+      <div
+        className="alert alert-danger"
+        role="alert"
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+      >
+         请输入正确的用户名和密码 
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-sm-10 col-sm-offset-5"
+      >
+        <div
+          className="checkbox"
+        >
+          <label
+            title=""
+          >
+            <input
+              disabled={false}
+              type="checkbox"
+            />
+            Remember me
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-sm-10 col-sm-offset-6"
+      >
+        <button
+          className="btn btn-default"
+          disabled={false}
+          onClick={[Function]}
+          type="submit"
+        >
+          Sign In
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+`;
