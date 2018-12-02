@@ -10,6 +10,5 @@ docker build -f Dockerfile -t $IMAGE_NAME .
 docker run -d -p 8080:3000 \
     -v "$(pwd)"/dist:/usr/share/nginx/html/ \
     --name $CONTAINER_NAME $IMAGE_NAME:latest
-sudo chmod 777 ./dist/*
 
 

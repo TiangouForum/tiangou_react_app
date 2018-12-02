@@ -24,7 +24,7 @@ module.exports = {
                                                    // a function will be skipped.
   },
   "rules": {
-    'no-console': 'off',
+    "no-console": "error",
     "array-bracket-spacing": [
       "error",
       "never"
@@ -33,6 +33,8 @@ module.exports = {
       "error",
       "always"
     ],
-    "space-in-parens": ["error", "never"]
+    "space-in-parens": ["error", "never"],
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"]
   }
 };

@@ -1,62 +1,61 @@
-const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const path = require("path");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: "development",
+  entry: "./src/index.js",
   output: {
-    filename: 'tiangouforum.js',
-    path: path.resolve(__dirname, 'dist/'),
-    publicPath: '/'
+    filename: "tiangouforum.js",
+    path: path.resolve(__dirname, "dist/")
   },
   module: true,
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
+      template: "./src/index.html",
+      filename: "./index.html"
     }),
     new webpack.ProvidePlugin({
-      'React': 'react',
-      'ReactDOM': 'react-dom',
-      'PropTypes': 'prop-types'
+      "React": "react",
+      "ReactDOM": "react-dom",
+      "PropTypes": "prop-types"
     })
   ],
   watchOptions: {
     aggregateTimeout: 300,
     poll: 1000,
-    ignored: ['dist/*', 'node_modules']
+    ignored: ["dist/*", "node_modules"]
   },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader'
+          "style-loader",
+          "css-loader"
         ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader'
+          "file-loader"
         ]
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /node_modules/
       },
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          "style-loader",
+          "css-loader",
+          "sass-loader"
         ]
       }
     ]
   }
-}
+};
