@@ -1,8 +1,8 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import SignIn from '../container/signIn/SignIn'
-import SignUp from '../container/signUp/SignUp'
-import Home from '../container/home/Home'
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import SignIn from "../container/signIn/SignIn";
+import SignUp from "../container/signUp/SignUp";
+import Home from "../container/home/Home";
 
 export const Routes = () => (
   <BrowserRouter>
@@ -14,4 +14,4 @@ export const Routes = () => (
       </Switch>
     </div>
   </BrowserRouter>
-)
+);
