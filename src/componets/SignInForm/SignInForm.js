@@ -14,7 +14,7 @@ class SignInForm extends React.Component {
         password: ''
       },
       isLoginError: false,
-      url: 'http://localhost:3000/signIn'
+      url: 'http://127.0.0.1:8080/verifyAccount'
     }
   }
 
@@ -37,6 +37,7 @@ class SignInForm extends React.Component {
     }
     return fetch(url, {
       method,
+      mode: 'cors',
       header: {},
       body
     }).then((response) => {

@@ -30,7 +30,7 @@ class SignUpForm extends React.Component {
         },
         hasCommit: false
       },
-      url: 'http://localhost:3000/signUp'
+      url: 'http://127.0.0.1:8080/addAccount'
     }
   }
 
@@ -116,7 +116,9 @@ class SignUpForm extends React.Component {
     }
     return fetch(url, {
       method,
-      header: {}
+      mode: 'cors',
+      header: {},
+      body: body
     }).then((response) => {
       if (response.status === 404) {
         // TODO
